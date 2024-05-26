@@ -21,5 +21,10 @@ namespace SpliteEase
         {
 
         }
+
+        private void AnimationTimer_Tick(object sender, EventArgs e)
+        {
+           
+        }
     }
 }

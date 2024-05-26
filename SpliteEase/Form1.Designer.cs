@@ -28,21 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.navigationBar1 = new navigationBar.navigationBar();
             this.SuspendLayout();
+            // 
+            // navigationBar1
+            // 
+            this.navigationBar1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(228)))), ((int)(((byte)(255)))));
+            this.navigationBar1.Location = new System.Drawing.Point(-3, -4);
+            this.navigationBar1.Name = "navigationBar1";
+            this.navigationBar1.Size = new System.Drawing.Size(1044, 163);
+            this.navigationBar1.TabIndex = 0;
             // 
             // frmAcceuil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(928, 514);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(1021, 593);
+            this.Controls.Add(this.navigationBar1);
             this.Name = "frmAcceuil";
-            this.Text = "SplitEase";
+            this.Text = "SplitEase : Acceuil";
             this.Load += new System.EventHandler(this.frmAcceuil_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private navigationBar.navigationBar navigationBar1;
     }
 }
 
