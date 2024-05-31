@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAcceuil));
             this.navigationBar1 = new navigationBar.navigationBar();
             this.SuspendLayout();
             // 
@@ -38,15 +39,18 @@
             this.navigationBar1.Name = "navigationBar1";
             this.navigationBar1.Size = new System.Drawing.Size(1044, 163);
             this.navigationBar1.TabIndex = 0;
+            this.navigationBar1.Load += new System.EventHandler(this.navigationBar1_Load);
             // 
             // frmAcceuil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1021, 593);
+            this.ClientSize = new System.Drawing.Size(1021, 677);
             this.Controls.Add(this.navigationBar1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmAcceuil";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SplitEase : Acceuil";
             this.Load += new System.EventHandler(this.frmAcceuil_Load);
             this.ResumeLayout(false);

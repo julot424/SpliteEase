@@ -26,5 +26,10 @@ namespace SpliteEase
         {
            
         }
+
+        private void navigationBar1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
