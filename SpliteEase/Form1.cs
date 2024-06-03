@@ -7,17 +7,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SQLite;
+
 
 namespace SpliteEase
 {
-    public partial class frmAcceuil : Form
-    {
-        public frmAcceuil()
+   
+        public partial class frmAcceuil : Form
         {
-            InitializeComponent();
-        }
+            private SQLiteConnection cx;
+            public frmAcceuil()
+            {
+                InitializeComponent();
 
-        private void frmAcceuil_Load(object sender, EventArgs e)
+                string chaine = "Data Source=Events.sqlite";
+
+                try
+                {
+                    this.cx = new SQLiteConnection(chaine);
+                    this.cx.Open();
+                }
+                catch (SQLiteException err)
+                {
+                    MessageBox.Show(err.Message);
+                }
+            }
+
+
+            private void frmAcceuil_Load(object sender, EventArgs e)
         {
 
         }

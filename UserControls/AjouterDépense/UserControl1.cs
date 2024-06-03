@@ -16,5 +16,19 @@ namespace AjoutDépense
         {
             InitializeComponent();
         }
+
+        private void txtQuoi_TextChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void txtQuoi_Click(object sender, EventArgs e)
+        {
+            if(txtQuoi.Text == "Quoi")
+            {
+                txtQuoi.Text = "";
+                txtQuoi.ForeColor = Color.Black;
+            }
+        }
     }
 }
