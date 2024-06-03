@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(navigationBar));
             this.lblAcceuil = new System.Windows.Forms.Label();
             this.lblParticipant = new System.Windows.Forms.Label();
@@ -36,7 +35,7 @@
             this.lblDepense = new System.Windows.Forms.Label();
             this.picBoxIndicator = new System.Windows.Forms.PictureBox();
             this.picBoxLogo = new System.Windows.Forms.PictureBox();
-            this.AnimationTimer = new System.Windows.Forms.Timer(this.components);
+            this.AnimationTimer = new System.Windows.Forms.Timer();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxIndicator)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxLogo)).BeginInit();
             this.SuspendLayout();
@@ -89,7 +88,7 @@
             // 
             this.picBoxIndicator.Image = global::navigationBar.Properties.Resources.Indicator;
             this.picBoxIndicator.InitialImage = global::navigationBar.Properties.Resources.Indicator;
-            this.picBoxIndicator.Location = new System.Drawing.Point(264, 91);
+            this.picBoxIndicator.Location = new System.Drawing.Point(258, 100);
             this.picBoxIndicator.Name = "picBoxIndicator";
             this.picBoxIndicator.Size = new System.Drawing.Size(105, 17);
             this.picBoxIndicator.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
