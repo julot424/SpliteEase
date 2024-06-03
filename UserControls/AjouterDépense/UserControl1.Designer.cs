@@ -89,6 +89,7 @@
             this.txtQuoi.Text = "Quoi";
             this.txtQuoi.Click += new System.EventHandler(this.txtQuoi_Click);
             this.txtQuoi.TextChanged += new System.EventHandler(this.txtQuoi_TextChanged);
+            this.txtQuoi.Enter += new System.EventHandler(this.txtQuoi_Enter);
             // 
             // txtMontant
             // 
@@ -102,6 +103,8 @@
             this.txtMontant.Text = "Montant";
             this.txtMontant.Click += new System.EventHandler(this.txtMontant_Click);
             this.txtMontant.TextChanged += new System.EventHandler(this.txtMontant_TextChanged);
+            this.txtMontant.Enter += new System.EventHandler(this.txtMontant_Enter);
+            this.txtMontant.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMontant_KeyPress);
             // 
             // dateDeLajout
             // 
@@ -123,6 +126,7 @@
             this.txtCommentaire.Text = "Commentaire";
             this.txtCommentaire.Click += new System.EventHandler(this.txtCommentaire_Click);
             this.txtCommentaire.TextChanged += new System.EventHandler(this.txtCommentaire_TextChanged);
+            this.txtCommentaire.Enter += new System.EventHandler(this.txtCommentaire_Enter);
             // 
             // chkListBeneficiaire
             // 
@@ -146,6 +150,7 @@
             this.btnValider.TabIndex = 9;
             this.btnValider.Text = "Valider";
             this.btnValider.UseVisualStyleBackColor = false;
+            this.btnValider.Click += new System.EventHandler(this.btnValider_Click);
             // 
             // chkTous
             // 

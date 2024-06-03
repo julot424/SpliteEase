@@ -15,6 +15,7 @@ namespace AjoutDépense
     public partial class UserControl1: UserControl
     {
         private SQLiteConnection cx;
+        
 
         public UserControl1()
         {
@@ -46,11 +47,7 @@ namespace AjoutDépense
 
         private void txtQuoi_Click(object sender, EventArgs e)
         {
-            if(txtQuoi.Text == "Quoi")
-            {
-                txtQuoi.Text = "";
-                txtQuoi.ForeColor = Color.Black;
-            }
+            
         }
 
         private void txtMontant_TextChanged(object sender, EventArgs e)
@@ -65,11 +62,7 @@ namespace AjoutDépense
 
         private void txtMontant_Click(object sender, EventArgs e)
         {
-            if (txtMontant.Text == "Montant")
-            {
-                txtMontant.Text = "";
-                txtMontant.ForeColor = Color.Black;
-            }
+            
         }
 
         private void txtCommentaire_Click(object sender, EventArgs e)
@@ -114,14 +107,14 @@ namespace AjoutDépense
 
             int selectedIndex = cboEvenement.SelectedIndex + 1;
 
-            string rqt = "SELECT (p.nomPart ||' '|| p.prenomPart) AS fullName FROM Participants p INNER JOIN Invites i ON p.codeParticipant = i.codePart INNER JOIN Evenements e ON i.codeEvent = e.codeEvent WHERE e.codeEvent = " + selectedIndex;
+            string rqt = "SELECT p.codeParticipant, (p.nomPart ||' '|| p.prenomPart) AS fullName FROM Participants p INNER JOIN Invites i ON p.codeParticipant = i.codePart INNER JOIN Evenements e ON i.codeEvent = e.codeEvent WHERE e.codeEvent = " + selectedIndex;
             SQLiteDataAdapter da = new SQLiteDataAdapter(rqt, cx);
             DataTable dt = new DataTable();
             da.Fill(dt);
 
             cboPayePar.DataSource = dt;
             cboPayePar.DisplayMember = "fullName";
-            cboPayePar.ValueMember = "fullName";
+            cboPayePar.ValueMember = "p.codeParticipant";
 
             cboPayePar.Text = "Payé par";
 
@@ -159,6 +152,7 @@ namespace AjoutDépense
             chkListBeneficiaire.DataSource = dt;
             chkListBeneficiaire.DisplayMember = "fullName";
             chkListBeneficiaire.ValueMember = "fullName";
+
         }
 
         private void chkTous_CheckedChanged(object sender, EventArgs e)
@@ -177,6 +171,70 @@ namespace AjoutDépense
                 {
                     chkListBeneficiaire.SetItemChecked(i, false);
                 }
+            }
+        }
+
+        private void txtMontant_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && !(e.KeyChar==','))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtMontant_Enter(object sender, EventArgs e)
+        {
+            if (txtMontant.Text == "Montant")
+            {
+                txtMontant.Text = "";
+                txtMontant.ForeColor = Color.Black;
+            }
+        }
+
+        private void txtCommentaire_Enter(object sender, EventArgs e)
+        {
+            if (txtCommentaire.Text == "Commentaire")
+            {
+                txtCommentaire.Text = "";
+                txtCommentaire.ForeColor = Color.Black;
+            }
+        }
+
+        private void txtQuoi_Enter(object sender, EventArgs e)
+        {
+            if (txtQuoi.Text == "Quoi")
+            {
+                txtQuoi.Text = "";
+                txtQuoi.ForeColor = Color.Black;
+            }
+        }
+
+        private void btnValider_Click(object sender, EventArgs e)
+        {
+            int codePart = Convert.ToInt32(cboPayePar.SelectedValue);
+
+
+            int codePartSelectionne = int.Parse(cboPayePar.SelectedValue.ToString());
+            
+
+            
+            int indexCodeEvent = cboEvenement.SelectedIndex + 1;
+
+            string insertDepenseQuery = "INSERT INTO Depenses (description, montant, dateDepense, commentaire, codeEvent, codePart) VALUES (@description, @montant, @dateDepense, @commentaire, @codeEvent, @codePart)";
+            using (SQLiteCommand cmd = new SQLiteCommand(insertDepenseQuery, cx))
+            {
+                // Ajout des paramètres avec les valeurs correspondantes
+                cmd.Parameters.AddWithValue("@description", txtQuoi.Text);
+                cmd.Parameters.AddWithValue("@montant", Convert.ToDouble(txtMontant.Text));
+                cmd.Parameters.AddWithValue("@dateDepense", dateDeLajout.Value.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@commentaire", txtCommentaire.Text);
+                cmd.Parameters.AddWithValue("@codeEvent", indexCodeEvent);
+                cmd.Parameters.AddWithValue("@codePart", codePartSelectionne);
+
+                // Exécution de la commande d'insertion
+                cmd.ExecuteNonQuery();
+
+                MessageBox.Show("La dépense a bien été enregistrée");
             }
         }
     }
