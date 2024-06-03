@@ -29,9 +29,8 @@
         private void InitializeComponent()
         {
             this.lblNouvelleDepense = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.cboEvenement = new System.Windows.Forms.ComboBox();
-            this.lblPayerPar = new System.Windows.Forms.ComboBox();
+            this.cboPayePar = new System.Windows.Forms.ComboBox();
             this.txtQuoi = new System.Windows.Forms.TextBox();
             this.txtMontant = new System.Windows.Forms.TextBox();
             this.dateDeLajout = new System.Windows.Forms.DateTimePicker();
@@ -54,15 +53,6 @@
             this.lblNouvelleDepense.TabIndex = 0;
             this.lblNouvelleDepense.Text = "Nouvelle dépense :";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(576, 445);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
-            // 
             // cboEvenement
             // 
             this.cboEvenement.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -72,16 +62,19 @@
             this.cboEvenement.Size = new System.Drawing.Size(259, 27);
             this.cboEvenement.TabIndex = 2;
             this.cboEvenement.Text = "Evènement";
+            this.cboEvenement.SelectedIndexChanged += new System.EventHandler(this.cboEvenement_SelectedIndexChanged);
+            this.cboEvenement.Click += new System.EventHandler(this.cboEvenement_Click);
+            this.cboEvenement.Leave += new System.EventHandler(this.cboEvenement_Leave);
             // 
-            // lblPayerPar
+            // cboPayePar
             // 
-            this.lblPayerPar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPayerPar.FormattingEnabled = true;
-            this.lblPayerPar.Location = new System.Drawing.Point(326, 73);
-            this.lblPayerPar.Name = "lblPayerPar";
-            this.lblPayerPar.Size = new System.Drawing.Size(259, 27);
-            this.lblPayerPar.TabIndex = 3;
-            this.lblPayerPar.Text = "Payé par";
+            this.cboPayePar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboPayePar.FormattingEnabled = true;
+            this.cboPayePar.Location = new System.Drawing.Point(326, 73);
+            this.cboPayePar.Name = "cboPayePar";
+            this.cboPayePar.Size = new System.Drawing.Size(259, 27);
+            this.cboPayePar.TabIndex = 3;
+            this.cboPayePar.Text = "Payé par";
             // 
             // txtQuoi
             // 
@@ -211,12 +204,12 @@
             this.Controls.Add(this.dateDeLajout);
             this.Controls.Add(this.txtMontant);
             this.Controls.Add(this.txtQuoi);
-            this.Controls.Add(this.lblPayerPar);
+            this.Controls.Add(this.cboPayePar);
             this.Controls.Add(this.cboEvenement);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblNouvelleDepense);
             this.Name = "UserControl1";
             this.Size = new System.Drawing.Size(610, 450);
+            this.Load += new System.EventHandler(this.UserControl1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -227,9 +220,8 @@
         #endregion
 
         private System.Windows.Forms.Label lblNouvelleDepense;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cboEvenement;
-        private System.Windows.Forms.ComboBox lblPayerPar;
+        private System.Windows.Forms.ComboBox cboPayePar;
         private System.Windows.Forms.TextBox txtQuoi;
         private System.Windows.Forms.TextBox txtMontant;
         private System.Windows.Forms.DateTimePicker dateDeLajout;

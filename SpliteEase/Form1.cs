@@ -34,9 +34,9 @@ namespace SpliteEase
             }
 
 
-            private void frmAcceuil_Load(object sender, EventArgs e)
+        private void frmAcceuil_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void AnimationTimer_Tick(object sender, EventArgs e)
