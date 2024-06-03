@@ -106,6 +106,8 @@
             this.txtMontant.Size = new System.Drawing.Size(259, 34);
             this.txtMontant.TabIndex = 5;
             this.txtMontant.Text = "Montant";
+            this.txtMontant.Click += new System.EventHandler(this.txtMontant_Click);
+            this.txtMontant.TextChanged += new System.EventHandler(this.txtMontant_TextChanged);
             // 
             // dateDeLajout
             // 
@@ -125,6 +127,8 @@
             this.txtCommentaire.Size = new System.Drawing.Size(259, 133);
             this.txtCommentaire.TabIndex = 7;
             this.txtCommentaire.Text = "Commentaire";
+            this.txtCommentaire.Click += new System.EventHandler(this.txtCommentaire_Click);
+            this.txtCommentaire.TextChanged += new System.EventHandler(this.txtCommentaire_TextChanged);
             // 
             // chkListBeneficiaire
             // 

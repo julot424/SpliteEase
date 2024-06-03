@@ -30,5 +30,33 @@ namespace AjoutDépense
                 txtQuoi.ForeColor = Color.Black;
             }
         }
+
+        private void txtMontant_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtCommentaire_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtMontant_Click(object sender, EventArgs e)
+        {
+            if (txtMontant.Text == "Montant")
+            {
+                txtMontant.Text = "";
+                txtMontant.ForeColor = Color.Black;
+            }
+        }
+
+        private void txtCommentaire_Click(object sender, EventArgs e)
+        {
+            if (txtCommentaire.Text == "Commentaire")
+            {
+                txtCommentaire.Text = "";
+                txtCommentaire.ForeColor = Color.Black;
+            }
+        }
     }
 }
