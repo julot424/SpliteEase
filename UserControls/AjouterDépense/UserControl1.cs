@@ -20,8 +20,11 @@ namespace AjoutDépense
         {
             InitializeComponent();
 
+            chkTous.Checked = false;
+
 
             string chaine =@"Data Source=C:\Users\julot\Desktop\BUTS2\SpliteEase\SpliteEase\bin\Debug\Events.sqlite";
+            
 
             try
             {
@@ -90,6 +93,7 @@ namespace AjoutDépense
             cboEvenement.ValueMember = "titreEvent";
 
             cboEvenement.Text = "Evénement";
+
         }
 
         private void cboEvenement_Click(object sender, EventArgs e)
@@ -105,6 +109,9 @@ namespace AjoutDépense
 
         private void cboEvenement_SelectedIndexChanged(object sender, EventArgs e)
         {
+            chkTous.Checked = true;
+
+
             int selectedIndex = cboEvenement.SelectedIndex + 1;
 
             string rqt = "SELECT (p.nomPart ||' '|| p.prenomPart) AS fullName FROM Participants p INNER JOIN Invites i ON p.codeParticipant = i.codePart INNER JOIN Evenements e ON i.codeEvent = e.codeEvent WHERE e.codeEvent = " + selectedIndex;
@@ -113,10 +120,64 @@ namespace AjoutDépense
             da.Fill(dt);
 
             cboPayePar.DataSource = dt;
-            cboPayePar.DisplayMember = "Nom participant";
+            cboPayePar.DisplayMember = "fullName";
             cboPayePar.ValueMember = "fullName";
 
             cboPayePar.Text = "Payé par";
+
+            if (chkTous.Checked)
+            {
+                for (int i = 0; i < chkListBeneficiaire.Items.Count; i++)
+                {
+                    chkListBeneficiaire.SetItemChecked(i, true);
+                }
+            }
+
+            else
+            {
+                for (int i = 0; i < chkListBeneficiaire.Items.Count; i++)
+                {
+                    chkListBeneficiaire.SetItemChecked(i, false);
+                }
+            }
+        }
+
+        private void chkListBeneficiaire_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            chkListBeneficiaire.ClearSelected();
+        }
+
+        private void cboPayePar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = cboEvenement.SelectedIndex + 1;
+
+            string rqt = "SELECT (p.nomPart ||' '|| p.prenomPart) AS fullName FROM Participants p INNER JOIN Invites i ON p.codeParticipant = i.codePart INNER JOIN Evenements e ON i.codeEvent = e.codeEvent WHERE e.codeEvent = " + selectedIndex;
+            SQLiteDataAdapter da = new SQLiteDataAdapter(rqt, cx);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            chkListBeneficiaire.DataSource = dt;
+            chkListBeneficiaire.DisplayMember = "fullName";
+            chkListBeneficiaire.ValueMember = "fullName";
+        }
+
+        private void chkTous_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkTous.Checked)
+            {
+                for (int i = 0; i < chkListBeneficiaire.Items.Count; i++)
+                {
+                    chkListBeneficiaire.SetItemChecked(i, true);
+                }
+            }
+
+            else
+            {
+                for (int i = 0; i < chkListBeneficiaire.Items.Count; i++)
+                {
+                    chkListBeneficiaire.SetItemChecked(i, false);
+                }
+            }
         }
     }
 }

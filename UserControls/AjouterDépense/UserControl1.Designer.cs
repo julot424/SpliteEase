@@ -75,6 +75,7 @@
             this.cboPayePar.Size = new System.Drawing.Size(259, 27);
             this.cboPayePar.TabIndex = 3;
             this.cboPayePar.Text = "Payé par";
+            this.cboPayePar.SelectedIndexChanged += new System.EventHandler(this.cboPayePar_SelectedIndexChanged);
             // 
             // txtQuoi
             // 
@@ -125,26 +126,14 @@
             // 
             // chkListBeneficiaire
             // 
+            this.chkListBeneficiaire.CheckOnClick = true;
             this.chkListBeneficiaire.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkListBeneficiaire.FormattingEnabled = true;
-            this.chkListBeneficiaire.Items.AddRange(new object[] {
-            "bob",
-            "bob",
-            "bobbob",
-            "bob",
-            "bobbob",
-            "bob",
-            "bobbob",
-            "bob",
-            "bobbob",
-            "bob",
-            "bobbob",
-            "bob",
-            "bob"});
             this.chkListBeneficiaire.Location = new System.Drawing.Point(28, 218);
             this.chkListBeneficiaire.Name = "chkListBeneficiaire";
             this.chkListBeneficiaire.Size = new System.Drawing.Size(259, 214);
             this.chkListBeneficiaire.TabIndex = 8;
+            this.chkListBeneficiaire.SelectedIndexChanged += new System.EventHandler(this.chkListBeneficiaire_SelectedIndexChanged);
             // 
             // btnValider
             // 
@@ -170,6 +159,7 @@
             this.chkTous.TabIndex = 10;
             this.chkTous.Text = "Tous";
             this.chkTous.UseVisualStyleBackColor = true;
+            this.chkTous.CheckedChanged += new System.EventHandler(this.chkTous_CheckedChanged);
             // 
             // lblBeneficiaire
             // 
