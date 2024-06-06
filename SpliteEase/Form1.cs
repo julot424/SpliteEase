@@ -48,5 +48,15 @@ namespace SpliteEase
         {
 
         }
+
+        private void btnAjouterDepense_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void navigationBar1_AcceuilClicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }

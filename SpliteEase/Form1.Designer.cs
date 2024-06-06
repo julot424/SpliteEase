@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAcceuil));
             this.navigationBar1 = new navigationBar.navigationBar();
+            this.btnAjouterDepense = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // navigationBar1
@@ -39,7 +40,21 @@
             this.navigationBar1.Name = "navigationBar1";
             this.navigationBar1.Size = new System.Drawing.Size(1044, 163);
             this.navigationBar1.TabIndex = 0;
+            this.navigationBar1.AcceuilClicked += new System.EventHandler(this.navigationBar1_AcceuilClicked);
             this.navigationBar1.Load += new System.EventHandler(this.navigationBar1_Load);
+            // 
+            // btnAjouterDepense
+            // 
+            this.btnAjouterDepense.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(170)))), ((int)(((byte)(0)))));
+            this.btnAjouterDepense.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAjouterDepense.ForeColor = System.Drawing.Color.Transparent;
+            this.btnAjouterDepense.Location = new System.Drawing.Point(616, 165);
+            this.btnAjouterDepense.Name = "btnAjouterDepense";
+            this.btnAjouterDepense.Size = new System.Drawing.Size(393, 60);
+            this.btnAjouterDepense.TabIndex = 1;
+            this.btnAjouterDepense.Text = "Ajouter une dépense";
+            this.btnAjouterDepense.UseVisualStyleBackColor = false;
+            this.btnAjouterDepense.Click += new System.EventHandler(this.btnAjouterDepense_Click);
             // 
             // frmAcceuil
             // 
@@ -47,6 +62,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1021, 677);
+            this.Controls.Add(this.btnAjouterDepense);
             this.Controls.Add(this.navigationBar1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmAcceuil";
@@ -60,6 +76,7 @@
         #endregion
 
         private navigationBar.navigationBar navigationBar1;
+        private System.Windows.Forms.Button btnAjouterDepense;
     }
 }
 

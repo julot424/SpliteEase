@@ -1,6 +1,6 @@
 ﻿namespace AjoutDépense
 {
-    partial class UserControl1
+    partial class ajouterDepense
     {
         /// <summary>
         /// Variable nécessaire au concepteur.
@@ -187,7 +187,7 @@
             this.panel1.Size = new System.Drawing.Size(259, 39);
             this.panel1.TabIndex = 12;
             // 
-            // UserControl1
+            // ajouterDepense
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -202,7 +202,7 @@
             this.Controls.Add(this.cboPayePar);
             this.Controls.Add(this.cboEvenement);
             this.Controls.Add(this.lblNouvelleDepense);
-            this.Name = "UserControl1";
+            this.Name = "ajouterDepense";
             this.Size = new System.Drawing.Size(610, 450);
             this.Load += new System.EventHandler(this.UserControl1_Load);
             this.panel1.ResumeLayout(false);

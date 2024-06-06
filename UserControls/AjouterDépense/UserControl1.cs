@@ -12,12 +12,12 @@ using System.IO;
 
 namespace AjoutDépense
 {
-    public partial class UserControl1: UserControl
+    public partial class ajouterDepense: UserControl
     {
         private SQLiteConnection cx;
         
 
-        public UserControl1()
+        public ajouterDepense()
         {
             InitializeComponent();
 
@@ -144,14 +144,14 @@ namespace AjoutDépense
         {
             int selectedIndex = cboEvenement.SelectedIndex + 1;
 
-            string rqt = "SELECT (p.nomPart ||' '|| p.prenomPart) AS fullName FROM Participants p INNER JOIN Invites i ON p.codeParticipant = i.codePart INNER JOIN Evenements e ON i.codeEvent = e.codeEvent WHERE e.codeEvent = " + selectedIndex;
+            string rqt = "SELECT codePart, (p.nomPart ||' '|| p.prenomPart) AS fullName FROM Participants p INNER JOIN Invites i ON p.codeParticipant = i.codePart INNER JOIN Evenements e ON i.codeEvent = e.codeEvent WHERE e.codeEvent = " + selectedIndex;
             SQLiteDataAdapter da = new SQLiteDataAdapter(rqt, cx);
             DataTable dt = new DataTable();
             da.Fill(dt);
 
             chkListBeneficiaire.DataSource = dt;
             chkListBeneficiaire.DisplayMember = "fullName";
-            chkListBeneficiaire.ValueMember = "fullName";
+            chkListBeneficiaire.ValueMember = "codePart";
 
         }
 
@@ -211,8 +211,6 @@ namespace AjoutDépense
 
         private void btnValider_Click(object sender, EventArgs e)
         {
-            int codePart = Convert.ToInt32(cboPayePar.SelectedValue);
-
 
             int codePartSelectionne = int.Parse(cboPayePar.SelectedValue.ToString());
             
@@ -234,8 +232,37 @@ namespace AjoutDépense
                 // Exécution de la commande d'insertion
                 cmd.ExecuteNonQuery();
 
+                int numDepense;
+                string queryGetNumDepense = "SELECT numDepense FROM Depenses ORDER BY numDepense DESC LIMIT 1";
+                using (SQLiteCommand getNumDepenseCmd = new SQLiteCommand(queryGetNumDepense, cx))
+                {
+                    object result = getNumDepenseCmd.ExecuteScalar();
+                    if (result != null && int.TryParse(result.ToString(), out int tempNumDepense))
+                    {
+                        numDepense = tempNumDepense;
+                    }
+                    else
+                    {
+                        throw new Exception("Impossible de récupérer le dernier numDepense.");
+                    }
+                }
+
+
+                string insertBeneficiaireQuery = "INSERT INTO Beneficiaires (numDepense, codePart) VALUES (@numDepense, @codePart)";
+                using (SQLiteCommand cmdInsertBenef = new SQLiteCommand(insertBeneficiaireQuery, cx))
+                {
+                    foreach (DataRowView item in chkListBeneficiaire.CheckedItems)
+                    {
+                        int codeBeneficiaire = Convert.ToInt32(item["codePart"]);
+                        cmdInsertBenef.Parameters.Clear();
+                        cmdInsertBenef.Parameters.AddWithValue("@numDepense", numDepense);
+                        cmdInsertBenef.Parameters.AddWithValue("@codePart", codeBeneficiaire);
+                        cmdInsertBenef.ExecuteNonQuery();
+                    }
+                }
+            }
+
                 MessageBox.Show("La dépense a bien été enregistrée");
             }
         }
-    }
 }
